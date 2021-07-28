@@ -5,6 +5,8 @@ const sqlite3 = require('sqlite3').verbose();
 
 async function writeData(timestamp, occupation) {
 
+    console.log('Attempting to write data...');
+
     let ts = parseInt(timestamp / 1000 / 60) * 1000 * 60; // round to minutes
     let occ = parseInt(occupation);
 
@@ -13,7 +15,6 @@ async function writeData(timestamp, occupation) {
         if (err) {
             return console.error(err.message);
         }
-        console.log('Successfully connected to occupation.db');
     });
 
     // Insert fetched data into database
@@ -29,7 +30,6 @@ async function writeData(timestamp, occupation) {
         if (err) {
             return console.error(err.message);
         }
-        console.log('Succesfully closed occupation.db');
     });
 
     console.log(`Successfully added ${ts} - ${occ}!`);
@@ -37,6 +37,8 @@ async function writeData(timestamp, occupation) {
 
 async function getOccupation() {
     try {
+        console.log('Query going out...');
+
         const browser = await puppeteer.launch();
         const page = await browser.newPage();
 
@@ -62,12 +64,8 @@ async function getOccupation() {
 };
 
 async function queryServer() {
-
-    console.log('Query going out...');
     const [timestamp, occupation] = await getOccupation();
 
-    console.log();
-    console.log('Starting to write data...');
     writeData(timestamp, occupation);
 
     console.log();
