@@ -43,9 +43,6 @@ async function getOccupation() {
         await page.goto('https://www.fitnessfirst.de/clubs/darmstadt', { waitUntil: 'networkidle0' });
         let data = await page.evaluate(() => document.querySelector('.chartbar__percentage').innerHTML);
 
-        console.log(data)
-        console.log([...data])
-
         // filter occupation numbers out of string array
         let occupation = [...data]
         .reduce((accumulator, currValue) => {
@@ -54,8 +51,6 @@ async function getOccupation() {
             }
             return accumulator;
         }, '');
-
-        console.log(occupation);
 
         await browser.close();
         console.log('Query successful!')
