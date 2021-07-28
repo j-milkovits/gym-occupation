@@ -5,8 +5,8 @@ const sqlite3 = require('sqlite3').verbose();
 
 async function writeData(timestamp, occupation) {
 
-    let timestamp = parseInt(timestamp / 1000 / 60) * 1000 * 60; // round to minutes
-    let occupation = parseInt(occupation);
+    let ts = parseInt(timestamp / 1000 / 60) * 1000 * 60; // round to minutes
+    let occ = parseInt(occupation);
 
     // Open Database Connection
     let db = new sqlite3.Database('../db/occupation.db', (err) => {
@@ -18,7 +18,7 @@ async function writeData(timestamp, occupation) {
 
     // Insert fetched data into database
 
-    db.run(`INSERT INTO data VALUES(${timestamp}, ${occupation})`, [], (err) => {
+    db.run(`INSERT INTO data VALUES(${ts}, ${occ})`, [], (err) => {
         if (err) {
             return console.log(err.message);
         }
@@ -32,7 +32,7 @@ async function writeData(timestamp, occupation) {
         console.log('Succesfully closed occupation.db');
     });
 
-    console.log(`Successfully added ${timestamp} - ${occupation}!`);
+    console.log(`Successfully added ${ts} - ${occ}!`);
 }
 
 async function getOccupation() {
@@ -41,18 +41,21 @@ async function getOccupation() {
         const page = await browser.newPage();
 
         await page.goto('https://www.fitnessfirst.de/clubs/darmstadt', { waitUntil: 'networkidle0' });
-        let data = await page.evaluate(() => document.querySelector('.v-show-club-checkin--text').innerHTML);
+        let data = await page.evaluate(() => document.querySelector('.chartbar__percentage').innerHTML);
 
-        let occupation = '';
+        console.log(data)
+        console.log([...data])
 
         // filter occupation numbers out of string array
-        [...data]
-        .filter((elem) => {
-            return !isNaN(parseInt(elem));
-        })
-        .forEach((elem) => {
-            occupation += elem;
-        })
+        let occupation = [...data]
+        .reduce((accumulator, currValue) => {
+            if (!isNaN(parseInt(currValue))) {
+                return accumulator + currValue;
+            }
+            return accumulator;
+        }, '');
+
+        console.log(occupation);
 
         await browser.close();
         console.log('Query successful!')
