@@ -52,8 +52,6 @@ async function queryServer() {
 function updateTable (timestamps, occupations) {
     timestamps = timestamps.map(convertTimestamp);
 
-    console.log(timestamps);
-
     chartCanvas = new Chart(ctx, {
         type: 'line',
         data: {
@@ -83,6 +81,7 @@ function updateTable (timestamps, occupations) {
 
 function convertTimestamp(timestamp) {
     let date = new Date(timestamp);
+    let dayOfWeek = new Intl.DateTimeFormat('en-US', { weekday: 'long'}).format(date);
     let day = date.getDate();
     day = day < 10 ? '0' + day : day;
     let month = date.getMonth() + 1;
@@ -93,7 +92,7 @@ function convertTimestamp(timestamp) {
     let minutes = date.getMinutes();
     minutes = minutes < 10 ? '0' + minutes : minutes;
 
-    let dateString = `${day}/${month}/${year} - ${hour}:${minutes}`;
+    let dateString = `${dayOfWeek} - ${hour}:${minutes} - ${day}/${month}/${year}`;
 
     return dateString;
 }
