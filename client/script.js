@@ -3,6 +3,7 @@ const startDateInput = document.querySelector('#startDateInput');
 const endDateInput = document.querySelector('#endDateInput');
 
 const ctx = document.getElementById('chartCanvas').getContext('2d');
+let chartCanvas;
 
 queryButton.addEventListener('click', (evt) => {
     evt.preventDefault();
@@ -19,6 +20,7 @@ async function update() {
     queryButton.disabled = 'true';
     const [timestamps, occupations] = await queryServer();
     
+    chartCanvas && chartCanvas.destroy();
     updateTable(timestamps, occupations);
     
     queryButton.disabled = undefined;
@@ -28,14 +30,9 @@ async function queryServer() {
     const startDate = startDateInput.valueAsNumber;
     const endDate = endDateInput.valueAsNumber;
 
-    const data = 
-        fetch(`https://jonas-milkovits.com/gym-occupation/api?startDate=${startDate}&endDate=${endDate}`)
-        .then(data => {
-            return data.json();
-        })
-        .then(parsedData => {
-            return parsedData;
-        });
+    const fetchedData = await fetch(`https://jonas-milkovits.com/gym-occupation/api?startDate=${startDate}&endDate=${endDate}`);
+    const data = await fetchedData.json();
+
     
     // Data will look like this:
     // {
@@ -53,7 +50,7 @@ async function queryServer() {
 }
 
 function updateTable (timestamps, occupations) {
-    let chartCanvas = new Chart(ctx, {
+    chartCanvas = new Chart(ctx, {
         type: 'line',
         data: {
             labels: timestamps,
