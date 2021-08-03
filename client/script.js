@@ -29,7 +29,7 @@ async function queryServer() {
     const endDate = endDateInput.valueAsNumber;
 
     const data = 
-        fetch(`https://jonas-milkovits.com/gym-occupation?startDate=${startDate}&endDate=${endDate}`)
+        fetch(`https://jonas-milkovits.com/gym-occupation/api?startDate=${startDate}&endDate=${endDate}`)
         .then(data => {
             return data.json();
         })
