@@ -33,7 +33,7 @@ async function queryServer() {
     const fetchedData = await fetch(`https://jonas-milkovits.com/gym-occupation/api?startDate=${startDate}&endDate=${endDate}`);
     const data = await fetchedData.json();
 
-    
+
     // Data will look like this:
     // {
     //     timestamps: [
@@ -50,6 +50,10 @@ async function queryServer() {
 }
 
 function updateTable (timestamps, occupations) {
+    timestamps = timestamps.map(convertTimestamp);
+
+    console.log(timestamps);
+
     chartCanvas = new Chart(ctx, {
         type: 'line',
         data: {
@@ -75,6 +79,23 @@ function updateTable (timestamps, occupations) {
         }
     });
 
+}
+
+function convertTimestamp(timestamp) {
+    let date = new Date(timestamp);
+    let day = date.getDate();
+    day = day < 10 ? '0' + day : day;
+    let month = date.getMonth() + 1;
+    month = month < 10 ? '0' + month : month;
+    let year = date.getFullYear();
+    let hour = date.getHours();
+    hour = hour < 10 ? '0' + hour : hour;
+    let minutes = date.getMinutes();
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+
+    let dateString = `${day}/${month}/${year} - ${hour}:${minutes}`;
+
+    return dateString;
 }
 
 function setTodaysDate() {
