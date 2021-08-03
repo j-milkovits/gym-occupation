@@ -25,8 +25,8 @@ async function update() {
 }
 
 async function queryServer() {
-    const startDate = startDateInput.value;
-    const endDate = endDateInput.value;
+    const startDate = startDateInput.valueAsNumber;
+    const endDate = endDateInput.valueAsNumber;
 
     const data = 
         fetch(`https://jonas-milkovits.com/gym-occupation?startDate=${startDate}&endDate=${endDate}`)
@@ -56,10 +56,10 @@ function updateTable (timestamps, occupations) {
     let chartCanvas = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [1,2,3,4,5],
+            labels: timestamps,
             datasets: [{
                 label: 'Occupation in Gym',
-                data: [1,2,3,4,5],
+                data: occupations,
                 backgroundColor: [
                     'rgba(255, 159, 64, 0.2)'
                 ],
