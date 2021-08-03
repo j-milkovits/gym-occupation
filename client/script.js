@@ -31,7 +31,7 @@ async function queryServer() {
     const data = 
         fetch(`https://jonas-milkovits.com/gym-occupation?startDate=${startDate}&endDate=${endDate}`)
         .then(data => {
-            return data.JSON();
+            return data.json();
         })
         .then(parsedData => {
             return parsedData;
