@@ -12,6 +12,12 @@ router.get('/api', (req, res) => {
     let {startDate, endDate} = req.query;
 
     if (!startDate || !endDate) res.json({});
+    
+    // returns amount of hours to add to get to GMT + 0
+    // handles german summer and winter times
+    let hourOffset = new Date(Date.now()).getTimezoneOffset() / (-60);
+
+    startDate = startDate - 1000 * 60 * 60 * hourOffset;
 
     // add one day to endDate to include the whole day in the query
     endDate = `${parseInt(endDate) + 1000 * 60 * 60 * 24}`;
