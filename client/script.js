@@ -113,3 +113,5 @@ function convertTimestamp(timestamp) {
 // }
 
 // setTodaysDate(); 
+
+update();
