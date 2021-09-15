@@ -11,4 +11,4 @@
 - displays data and sends requests for data to backend
 
 
-!(Website Screenshot)[https://github.com/j-milkovits/gym-occupation/blob/main/assets/webpage_screenshot.png?raw=true]
+!(Website Screenshot)[https://raw.githubusercontent.com/j-milkovits/gym-occupation/main/assets/webpage_screenshot.png]
