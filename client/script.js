@@ -68,6 +68,16 @@ function updateTable (timestamps, occupations) {
                     beginAtZero: true
                 }
             },
+            plugins: { 
+                legend: {
+                  labels: {
+                    color: "white",
+                    font: {
+                      size: 18 
+                    }
+                  }
+                }
+            }
         }
     });
 
