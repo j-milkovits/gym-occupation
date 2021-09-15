@@ -5,21 +5,44 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gym Occupation</title>
-    <link rel="stylesheet" href="lib/bootstrap.min.css">
+    <link rel="stylesheet" href="/gym-occupation/client/lib/bootstrap.min.css">
 </head>
-<body>
-    <form>
-        <label for="startDateInput">Choose day for start of data:</label>
-        <input type="date" name="startDate" id="startDateInput" min="2021-07-29" max="2021-08-21" value="2021-08-21">
-        <label for="endDateInput">Choose day for end of data:</label>
-        <input type="date" name="endDate" id="endDateInput" min="2021-07-29" max="2021-08-21" value="2021-08-21">
-        <button type="submit" id="queryButton">Show Occupation</button>
-    </form>
-    <canvas id="chartCanvas" width="400" height="400"></canvas>
-    <script src="lib/chart.min.js"></script>
-    <script src="script.js"></script>
-    <script src="lib/bootstrap.min.js"></script>
-    <script src="lib/jquery-3.3.1.slim.min.js"></script>
-    <script src="lib/popper.min.js"></script>
+<body class="bg-dark">
+    <div class="container-fluid">
+        <form>
+            <div class="row justify-content-around">
+                <div class="col-lg-5 text-center">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text bg-secondary text-white" >Start day:</span>
+                        </div>
+                        <input type="date" class="form-control bg-light text-center" name="startDate" id="startDateInput" min="2021-07-29" max="2021-08-21" value="2021-08-21">
+                    </div>
+                </div>
+                <div class="col-lg-5 text-center">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text bg-secondary text-white" >End day:</span>
+                        </div>
+                        <input type="date" class="form-control bg-light text-center" name="endDate" id="endDateInput" min="2021-07-29" max="2021-08-21" value="2021-08-21">
+                    </div>
+                </div>
+                <div class="col-lg-2 text-center">
+                    <button class="btn" type="submit" id="queryButton">Show Occupation</button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col">
+                <canvas id="chartCanvas" width="400" height="400"></canvas>
+            </div>
+        </div>
+
+    </div>
+    <script src="/gym-occupation/client/script.js"></script>
+    <script src="/gym-occupation/client/lib/chart.min.js"></script>
+    <script src="/gym-occupation/client/lib/bootstrap.min.js"></script>
+    <script src="/gym-occupation/client/lib/jquery-3.3.1.slim.min.js"></script>
+    <script src="/gym-occupation/client/lib/popper.min.js"></script>
 </body>
 </html>

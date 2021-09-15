@@ -53,19 +53,13 @@ function updateTable (timestamps, occupations) {
     timestamps = timestamps.map(convertTimestamp);
 
     chartCanvas = new Chart(ctx, {
-        type: 'line',
+        type: 'bar',
         data: {
             labels: timestamps,
             datasets: [{
-                label: 'Occupation in Gym',
+                label: 'Occupation of gym',
                 data: occupations,
-                backgroundColor: [
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1,
+                backgroundColor: "rgba(255, 255, 255, 1)",
             }]
         },
         options: {
@@ -73,7 +67,7 @@ function updateTable (timestamps, occupations) {
                 y: {
                     beginAtZero: true
                 }
-            }
+            },
         }
     });
 
