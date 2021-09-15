@@ -20,7 +20,7 @@ router.get('/api', (req, res) => {
     startDate = startDate - 1000 * 60 * 60 * hourOffset;
 
     // add one day to endDate to include the whole day in the query
-    endDate = `${parseInt(endDate) + 1000 * 60 * 60 * 24}`;
+    endDate = `${parseInt(endDate) + 1000 * 60 * 60 * (24 - hourOffset)}`;
 
     let timestamps = [];
     let occupations = [];
