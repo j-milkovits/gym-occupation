@@ -10,5 +10,6 @@
 # Frontend: (/client)
 - displays data and sends requests for data to backend
 
+# Hosted at: <https://jonas-milkovits.com/gym-occupation>
 
 <img src="assets/webpage_screenshot.png" width=640>
