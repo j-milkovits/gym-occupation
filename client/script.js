@@ -92,7 +92,8 @@ function convertTimestamp(timestamp) {
     let minutes = date.getMinutes();
     minutes = minutes < 10 ? '0' + minutes : minutes;
 
-    let dateString = `${dayOfWeek} - ${hour}:${minutes} - ${day}/${month}/${year}`;
+    // let dateString = `${dayOfWeek} - ${hour}:${minutes} - ${day}/${month}/${year}`;
+    let dateString = `${day}/${month} - ${hour}:${minutes}`;
 
     return dateString;
 }
