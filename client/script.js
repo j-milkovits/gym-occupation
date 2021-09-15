@@ -97,22 +97,24 @@ function convertTimestamp(timestamp) {
     return dateString;
 }
 
-function setTodaysDate() {
-    // Set default value for date inputs to today's date
+// Not setting TodaysDate to inputs anymore, because data was only collected up to 2021/08/21
 
-    let dateToday = new Date(Date.now());
+// function setTodaysDate() {
+//     // Set default value for date inputs to today's date
 
-    let year = dateToday.getFullYear();
-    let month = dateToday.getMonth() + 1;
+//     let dateToday = new Date(Date.now());
 
-    month = month < 10 ? '0' + month : month;
-    let day = dateToday.getDate();
-    day = day < 10 ? '0' + day : day;
+//     let year = dateToday.getFullYear();
+//     let month = dateToday.getMonth() + 1;
 
-    let dateString = `${year}-${month}-${day}`;
+//     month = month < 10 ? '0' + month : month;
+//     let day = dateToday.getDate();
+//     day = day < 10 ? '0' + day : day;
 
-    startDateInput.value = dateString;
-    endDateInput.value = dateString;
-}
+//     let dateString = `${year}-${month}-${day}`;
 
-setTodaysDate();
+//     startDateInput.value = dateString;
+//     endDateInput.value = dateString;
+// }
+
+// setTodaysDate();
