@@ -57,7 +57,7 @@ function updateTable (timestamps, occupations) {
         data: {
             labels: timestamps,
             datasets: [{
-                label: 'Occupation of gym',
+                label: 'Occupation of gym in %',
                 data: occupations,
                 backgroundColor: "rgba(255, 255, 255, 1)",
             }]
